@@ -111,19 +111,19 @@ class Node:
         if parent:
             self.depth = parent.depth + 1
 
-    def __repr__(self):
+    def __repr__(self):  # print
         return "<Node {}>".format(self.state)
 
-    def __lt__(self, node):
+    def __lt__(self, node):  # smaller than
         return self.state < node.state
 
-    def __eq__(self, node):
+    def __eq__(self, node):  # equal
         return self.state == node.state
 
-    def value(self):
+    def value(self):  # its value
         return self.problem.value(self.state)
 
-    def goal_test(self):
+    def goal_test(self):  # check if it is the goal (no conflics)
         return self.problem.goal_test(self.state)
 
     def expand(self):
@@ -179,13 +179,31 @@ def hill_climbing_instrumented(problem):
     recording the number of nodes expanded, and whether the problem was
     solved.
     """
-    ######################
-    ### Your code here ###
-    ######################
+    expanded = 0
+    solved = False
+
+    current = Node(problem=problem, state=problem.initial)
+    while True:
+        if current.goal_test():
+            solved = True
+            break
+
+        # Compute other actions
+        neighbours = current.expand()
+        expanded += 1
+        if not neighbours:
+            break
+
+        # Get the best action
+        neighbour = current.best_of(neighbours)
+        if neighbour.value() <= current.value():
+            break
+        current = neighbour
+
     return {
-        "expanded": int,
-        "solved": bool,
-        "best_state": tuple,
+        "expanded": expanded,
+        "solved": solved,
+        "best_state": current.state,
     }
 
 
