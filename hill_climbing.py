@@ -68,18 +68,20 @@ class NQueensProblem:
     def num_conflicts(self, state):
         """Return the number of conflicts in `state`."""
         num_conflicts = 0
-        for (col1, row1) in enumerate(state):
-            for (col2, row2) in enumerate(state):
+        for col1, row1 in enumerate(state):
+            for col2, row2 in enumerate(state):
                 if (col1, row1) != (col2, row2):
                     num_conflicts += self.conflict(row1, col1, row2, col2)
         return num_conflicts
 
     def conflict(self, row1, col1, row2, col2):
         """Would putting two queens in (row1, col1) and (row2, col2) conflict?"""
-        return (row1 == row2 or  # same row
-                col1 == col2 or  # same column
-                row1 - col1 == row2 - col2 or  # same \ diagonal
-                row1 + col1 == row2 + col2)  # same / diagonal
+        return (
+            row1 == row2  # same row
+            or col1 == col2  # same column
+            or row1 - col1 == row2 - col2  # same \ diagonal
+            or row1 + col1 == row2 + col2
+        )  # same / diagonal
 
     def random_state(self):
         """Return a new random n-queens state.
@@ -187,7 +189,7 @@ def hill_climbing_instrumented(problem):
 def hill_climbing_sideways(problem, max_sideways_moves):
     """
     When the search would terminate because the best neighbour doesn't
-    have a higher value than the current state, continue the search if 
+    have a higher value than the current state, continue the search if
     the the best neighbour's value is equal to that of the current state.
 
     But don't do this more than `max_sideways_moves` times. Watch out for

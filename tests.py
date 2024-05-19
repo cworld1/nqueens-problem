@@ -185,6 +185,7 @@ def verbose_test(test):
                 print("\tthese keys were in error:", error["keys"])
             print()
         return errors
+
     return wrapper
 
 
@@ -192,10 +193,8 @@ def prefix_errors(test):
     @wraps(test)
     def wrapper(*args, **kwargs):
         errors = test(*args, **kwargs)
-        return {
-            (test.__name__, problem): error
-            for problem, error in errors.items()
-        }
+        return {(test.__name__, problem): error for problem, error in errors.items()}
+
     return wrapper
 
 
@@ -257,8 +256,10 @@ def test_hill_climbing_random_restart():
 @prefix_errors
 def vanilla_check(hill_climbing_method, examples=hill_climbing_instrumented_examples):
     """Check if hill_climbing_method with a restart / sideways move limit of 0 returns results identical to hill_climbing_instrumented."""
+
     def hill_climbing_proxy(problem):
         return hill_climbing_method(problem, 0)
+
     return hill_climbing_test(hill_climbing_proxy, examples=examples)
 
 
