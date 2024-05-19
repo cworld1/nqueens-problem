@@ -210,9 +210,9 @@ def test_all():
 
 def get_all_prefixed_errors():
     return {
-        # **prefix_errors(test_action_and_result)(),
-        # **prefix_errors(test_hill_climbing_instrumented)(),
-        # **prefix_errors(test_hill_climbing_sideways)(),
+        **prefix_errors(test_action_and_result)(),
+        **prefix_errors(test_hill_climbing_instrumented)(),
+        **prefix_errors(test_hill_climbing_sideways)(),
         **prefix_errors(test_hill_climbing_random_restart)(),
     }
 
