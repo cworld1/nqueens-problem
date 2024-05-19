@@ -1,2 +1,10 @@
+# Python
 __pycache__
-*.docx
+
+# VSCode
+/.vscode
+
+### Customize ###
+
+# Docs
+/docs/*.docx
