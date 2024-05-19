@@ -1,5 +1,7 @@
 ﻿# N Queens Problem
 
+In many real-world problems, the path to the goal state is usually not very relevant to the goal. In the search algorithms that are available, the algorithms maintain one or more paths in memory and need to keep track of which nodes have been expanded. In fact, in some problems this is not necessary at all. For example, in problems where the focus is on the state of the solution, there is no need to consider the cost of the path to the goal, e.g., in the Eight Queens problem, the focus is on the final state of the eight queens, not on the order in which the queens are placed.
+
 Problem: see the [exercise](./docs/exercise.md).
 
 ## Local Development
