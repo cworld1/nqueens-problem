@@ -301,4 +301,5 @@ def generate_answers(hill_climbing_method, problems=None):
     return answers
 
 
-test_all()
+if __name__ == "__main__":
+    test_all()
