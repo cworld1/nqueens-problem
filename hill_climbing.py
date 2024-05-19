@@ -41,10 +41,14 @@ class NQueensProblem:
 
         Node.expand calls `result` with each action returned by `actions`.
         """
-        ######################
-        ### Your code here ###
-        ######################
-        return []
+        result = [
+            (c, r)
+            for c in range(len(state))
+            for r in range(len(state))
+            if r != state[c]
+        ]
+        # print(result)
+        return result
 
     def result(self, state: tuple, action) -> tuple:
         """Return the result of applying `action` to `state`.
@@ -52,10 +56,9 @@ class NQueensProblem:
         Move the queen in the column specified by `action` to the row specified by `action`.
         Node.expand calls `result` on each action returned by `actions`.
         """
-        ######################
-        ### Your code here ###
-        ######################
-        return ()
+        col, row = action
+        result = tuple(row if i == col else r for i, r in enumerate(state))
+        return result
 
     def goal_test(self, state):
         """Check if all columns filled, no conflicts."""

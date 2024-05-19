@@ -16,7 +16,7 @@ from hill_climbing import (
 
 
 SEED = 1
-VERBOSE = True
+VERBOSE = True  # True to print more information
 
 
 # {state: problem.result(state, problem.actions(state))}
@@ -166,15 +166,16 @@ hill_climbing_random_restart_examples = {
 }
 
 
-def verbose_test(test):
+def verbose_test(test):  # test as its function
     @wraps(test)
     def wrapper(*args, **kwargs):
-        errors = test(*args, **kwargs)
+        errors = test(*args, **kwargs)  # get all errors
         if not VERBOSE:
             return errors
         if not errors:
             print("PASSED:", test.__name__)
             return errors
+
         print()
         print("FAILED:", test.__name__)
         for problem, error in errors.items():
@@ -189,10 +190,11 @@ def verbose_test(test):
     return wrapper
 
 
-def prefix_errors(test):
+def prefix_errors(test):  # test as its function
     @wraps(test)
     def wrapper(*args, **kwargs):
         errors = test(*args, **kwargs)
+        # return as a dict
         return {(test.__name__, problem): error for problem, error in errors.items()}
 
     return wrapper
@@ -209,9 +211,9 @@ def test_all():
 def get_all_prefixed_errors():
     return {
         **prefix_errors(test_action_and_result)(),
-        **prefix_errors(test_hill_climbing_instrumented)(),
-        **prefix_errors(test_hill_climbing_sideways)(),
-        **prefix_errors(test_hill_climbing_random_restart)(),
+        # **prefix_errors(test_hill_climbing_instrumented)(),
+        # **prefix_errors(test_hill_climbing_sideways)(),
+        # **prefix_errors(test_hill_climbing_random_restart)(),
     }
 
 
@@ -297,3 +299,6 @@ def generate_answers(hill_climbing_method, problems=None):
         result = hill_climbing_method(problem, *args)
         answers[key] = result
     return answers
+
+
+test_all()
