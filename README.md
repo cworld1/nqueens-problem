@@ -23,6 +23,35 @@ cd nqueens-problem
 python main.py
 ```
 
+### Time efficiency
+
+To know the time efficiency of each solution way, you can run this script:
+
+```shell
+python ./generate_table.py
+```
+
+Example of the result:
+
+```log
+# queens        method          Average # of nodes +/- std dev  Average time to solve +/- std dev       Probability of solv
+ing
+8 queens
+                hillclimbing    7.00 +/- 0.00                           0.0064 +/- 0.0007               0.00
+                sideways        17.00 +/- 0.00                          0.0177 +/- 0.0014               0.00
+                randomrestart   32.70 +/- 14.16                         0.0362 +/- 0.0158               0.70
+9 queens
+                hillclimbing    8.00 +/- 0.00                           0.0126 +/- 0.0016               0.00
+                sideways        19.00 +/- 0.00                          0.0310 +/- 0.0025               0.00
+                randomrestart   32.40 +/- 15.06                         0.0531 +/- 0.0254               0.80
+10 queens
+                hillclimbing    11.00 +/- 0.00                          0.0267 +/- 0.0029               0.00
+                sideways        21.00 +/- 0.00                          0.0554 +/- 0.0059               0.00
+                randomrestart   48.30 +/- 20.46                         0.1240 +/- 0.0561               0.40
+```
+
+### Original code
+
 If you want to know the difference to original code, you can run the following command:
 
 ```shell
